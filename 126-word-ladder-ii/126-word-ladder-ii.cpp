@@ -1,67 +1,15 @@
 class Solution {
      /*
-    *   Input: beginWord: string, endWord: string, wordList: vector<string>
-    *   Output: res: vector<vector<string>>
-    *   beginWord: 
-    *       contains only lowercase english alphabets(ASCII 97-122)
-    *       length: 1-5
-    *   endWord:
-    *       contains only lowercase english alphabets(ASCII 97-122)
-    *       length: same as beginWord's lenght
-    *       endWord and beginWord are never same
-    *   wordList:
-    *       contains unique words of equal length. (length is same as beginWord)
-    *       contains endWord but not beginWord
-    *       length: 1-500
-    *   res:
-    *       Definition: list of all unique shortest transformation sequences.
-    *       length: sum of all sequences does not exceed 10^5.
-    *   Approach:
-    *   we need to find shortest transformation sequence from beginWord to endWord
-    *   It synonymous to finding shortest path between start node and endnode.
-    *   we need to visualise it as  graph.
-    *   nodes represent a word and transformation represents an edge.
-    *   transformation constitutes replacement of 1 letter to another.
-    *   so basically all edges are of same weight.
-    *   so We can use bfs for that.
-    *   since we don't have a graph like structure as input.
-    *   we need to build our own.
-    *   How to build?
-    *   Node of a graph basically contains a word.
-    *   How to find its children?
-    *   we replace each letter of a word with other 25 letters of the alphabet
-    *   and see if the newWord is in the wordList.
-    *   If yes, newWord becomes child of word else not. 
-    *   This might create cycle, so we must remove newWord from wordList.
-    *   But what if newWord can be achieved to other word also.
-    *   I am thinking about middle level where more than 1 word has proliferated from beginWord
-    *   and newWord can be achieved from 2 or more of them.
-    *   I this case, since we must traverse in bfs manner.
-    *   we would remove the word after a level is done transforming.
-    *   so, basically after a level is done transforming, the whole level would be 
-    *   swiped off from the wordList.
-    *   This way, we would create the graph till the level where endWord is achieved.
-    *   Since we are traversing to create, can we store the info for output at the same
-    *   time.
-    *   I need to devise algo to see it.
-    *   Algo:
-    *   map<string, vector<vector<string>>> oldLevel;
-    *   shortestSeq[beginWord] = {{beginWord}};
-    *   while(!endWordFound)
-    *       for(auto entry: oldLevel)
-    *           word = entry.first; seqList = entry.second;
-    *           newWord = word;
-    *           for(int i = 0; i < word.length; ++i)
-    *               for(char c = 'a'; c <= 'z'; ++c)
-    *                   if(c == word[i]) continue;
-    *                   newWord[i] = c;
-    *                   if(newWord is in wordList)
-    *                       if(newWord is endWord) endWordFound = true;
-    *                       writeNewSeq(oldLevel, newLevel, word, newWord);
-    *                   newWord = word;
-    *       oldLevel = newLevel;
-    *   return res = oldLevel[endWord];
-    */
+     * idea is referred from solution.
+     * to avoid TLE or MLE, we must create graph and
+     * traverse it for solution sequences separately
+     * a directed graph is created edge from newWord to oldWord.
+     * Reason being, there could be numerous paths covered while
+     * finding path from beginWord to endWord not necessarily
+     * reaching the endWord.
+     * Hence, we have more paths than the solution while creating graph.
+     * So, traversing backwards, we will traverse on the solution paths only.
+     */
 typedef vector<string> levelT;
 typedef vector<levelT> resT;
 typedef unordered_map<string, levelT> graphT;
