@@ -3,7 +3,7 @@ public:
     int maxPoints(vector<vector<int>>& points) {
         int res = 1;
         map<pair<int, int>, int> cntMap;
-        int duplicates = 0;
+        int duplicates = 1;
         int n = points.size();
         for(int i = 0; i < n; ++i) {
             cntMap.clear();
