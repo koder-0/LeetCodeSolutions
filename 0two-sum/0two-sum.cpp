@@ -24,12 +24,12 @@ public:
             }
             else {
                 //target-nums[i]
-                if(target < 0 && nums[i] > 0) {
-                    if(nums[i] + INT_MIN > (target)) continue;
-                }
-                else if(target > 0 && nums[i] < 0) {
-                    if(INT_MAX - abs(nums[i]) < target) continue;
-                }
+                // if(target < 0 && nums[i] > 0) {
+                //     if(nums[i] + INT_MIN > (target)) continue;
+                // }
+                // else if(target > 0 && nums[i] < 0) {
+                //     if(INT_MAX - abs(nums[i]) < target) continue;
+                // }
                 diffMap[target-nums[i]] = i;
             }
         }
