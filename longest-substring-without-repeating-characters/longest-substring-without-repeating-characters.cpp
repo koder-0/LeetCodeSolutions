@@ -10,13 +10,8 @@ public:
                 freq[s[st++]]--;
             }
             res = max(res, en-st+1);
-            cout<<st<<" "<<en<<" "<<res<<endl;
             en++;
         }
-        // while(st < en && freq[s[st]] > 1) {
-        //     freq[s[st++]]--;
-        // }
-        // res = max(res, en-st+1);
         return res;
         
     }
