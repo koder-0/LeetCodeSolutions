@@ -12,19 +12,15 @@ public:
                 //-2147483648  -2147483647  -2147483649
                 if(isNumNegative) {
                     if(res > (abs)(INT_MIN/10)) {
-                        // cout<<"i am here neg. "<<res<<" "<<val<<endl;
                         return INT_MIN;
                     }
                     if(res == (abs)(INT_MIN/10) && val >= 8) return INT_MIN;
                 }
                 else {
-                    // cout<<res<<" "<<(INT_MAX/10)<<endl;
                     if(res > (INT_MAX/10)) {
-                        // cout<<"i am here. "<<res<<" "<<val<<endl;
                         return INT_MAX;
                     }
                     if(res == (INT_MAX/10) && val >= 7) {
-                        // cout<<"i should be here.";
                         return INT_MAX;
                     }
                 }
@@ -48,7 +44,6 @@ public:
             }
             else break;
         }
-        // cout<<res<<endl;
         return isNumNegative ? -res : res;
     }
 };
